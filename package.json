@@ -1,0 +1,24 @@
+{
+  "name": "McAngular",
+  "version": "1.0.0",
+  "description": "This repo is changing the exam-app created a few months ago to use angular",
+  "main": "choice.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caust1408/McAngular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caust1408/McAngular/issues"
+  },
+  "homepage": "https://github.com/caust1408/McAngular",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.12.4",
+    "mongojs": "^1.0.1"
+  }
+}
