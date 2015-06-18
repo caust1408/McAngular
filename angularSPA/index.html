@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <title>Multiple Choice</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Bootstrap Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.2/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.0-rc.2/angular-messages.min.js"></script>
+        <script src="controllers.js"></script>
+       
+        <body>
+            <div class="container" ng-controller="AppCtrl">
+                
+                <h1>Multiple Choice</h1>
+                       
+                <div ng-repeat="question in multipleChoice">
+                    <div> {{$index + 1}}) {{question.text}}
+                        <div ng-repeat="choice in question.decoys" class="radio">
+                            <label><input type="radio" name="optradio">{{choice}}</label>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+        </body>
+    
+    
+    </head>
+
+</html>
