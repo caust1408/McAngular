@@ -12,22 +12,22 @@
         <script src="controllers.js"></script>
        
         <body>
-            <div class="container" ng-controller="AppCtrl">
-                
-                <h1>Multiple Choice</h1>
-                       
-                <div ng-repeat="question in multipleChoice">
+            <div class="container" ng-controller="AppCtrl"> 
+            <h1>Multiple Choice</h1>       
+                <div ng-repeat="question in multipleChoice" class="question">
+                   
                     <div> {{$index + 1}}) {{question.text}}
-                        <div ng-repeat="choice in question.decoys" class="radio">
-                            <label><input type="radio" name="optradio">{{choice}}</label>
+                       
+                        <div ng-repeat="choice in question.decoys" class="alert" ng-class="{'alert-warning': {{$first}}}" >
+                           
+                            <label><input value="{{choice}}"type="radio"/>{{choice}}</label>
+                            
+                            
+                            
                         </div>
                     </div>  
                 </div>
             </div>
-
         </body>
-    
-    
     </head>
-
 </html>
