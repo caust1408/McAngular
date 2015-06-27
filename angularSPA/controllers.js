@@ -4,15 +4,27 @@ myApp.controller('mainController',['$scope','$http',function($scope,$http) {
     
      
         $http.get('/multipleChoice').success(function(response) {
-            console.log("got data");
+            console.log("got mutiplechoice data");
             $scope.multipleChoice = response;
             $scope.question = "";
             
         });
-
 }]);
 
 myApp.controller('secondController',['$scope','$http',function($scope,$http) {
+            
+        $http.get('/match').success(function(response) {
+            console.log("got match data");
+            $scope.match = response;
+            $scope.choice = "";
+            
+
+        });
+    
+            $scope.random = function(ansChoice) {
+                return Math.random();
+            };
+            
     
     
 }]);
@@ -37,7 +49,7 @@ myApp.directive('navigationBar', function() {
                             +'<div>'
                                 +'<ul class="nav navbar-nav">'
                                     +'<li class="active"><a href="#">Home</a></li>'
-                                    +'<li><a href="#/matching">Matching</a></li>'
+                                    +'<li><a href="#/match">Matching</a></li>'
                                     +'<li><a href="#/true_false">True and False</a></li>' 
                                     +'<li><a href="#/multiple_choice">Multiple Choice</a></li>' 
                                 +'</ul>'
@@ -59,12 +71,12 @@ myApp.config(function($routeProvider) {
     
     .when('/true_false',  {
         templateUrl: 'pages/true_false.html',
-        controller: 'secondController'
+        controller: 'mainController'
     })
     
-    .when('/matching', {
-        templateUrl: 'pages/matching.html',
-        controller: 'mainController'
+    .when('/match', {
+        templateUrl: 'pages/match.html',
+        controller: 'secondController'
     })
           
 });
