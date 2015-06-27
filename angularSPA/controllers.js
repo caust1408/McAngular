@@ -1,5 +1,5 @@
-var myApp = angular.module('myApp',[]);
-myApp.controller('AppCtrl',['$scope','$http',function($scope,$http) {
+var myApp = angular.module('myApp',['ngRoute']);
+myApp.controller('mainController',['$scope','$http',function($scope,$http) {
     console.log("from controller");
     
      
@@ -12,17 +12,61 @@ myApp.controller('AppCtrl',['$scope','$http',function($scope,$http) {
 
 }]);
 
+myApp.controller('secondController',['$scope','$http',function($scope,$http) {
+    
+    
+}]);
+
 myApp.directive('questionGroup', function() {
     return {
-        template: '<div ng-repeat="question in multipleChoice">'
-                     +'<div class="radio" name="{{$index}}"> {{$index + 1}}) {{question.text}}'
-                        +'<div ng-repeat="choice in question.decoys | limitTo:4" class="alert">'
-                            +'<label><input name="{{$parent.$index}}" value="{{choice}}" type="radio"/>{{choice}}</label>'
-                        +'</div>'
-                    +'</div>'  
-                  +'</div>',
-        replace: true
+        replace: true,
+        compile: function(telm, attrs) {
+                var name = telm.attrs;
+                //console.log(name);
+        }
     }
+});
+
+myApp.directive('navigationBar', function() {
+    return {
+        template:   '<nav class="navbar navbar-default">'
+                        +'<div class="container-fluid">'
+                            +'<div class="navbar-header">'
+                                +'<a class="navbar-brand" href="#">Exam</a>'
+                            +'</div>'
+                            +'<div>'
+                                +'<ul class="nav navbar-nav">'
+                                    +'<li class="active"><a href="#">Home</a></li>'
+                                    +'<li><a href="#/matching">Matching</a></li>'
+                                    +'<li><a href="#/true_false">True and False</a></li>' 
+                                    +'<li><a href="#/multiple_choice">Multiple Choice</a></li>' 
+                                +'</ul>'
+                            +'</div>'
+                        +'</div>'
+                    +'</nav>'
+    }
+});
+
+myApp.config(function($routeProvider) {
+    
+    $routeProvider
+    
+    .when('/multiple_choice', {
+        templateUrl: 'pages/multiplechoice.html',
+        controller: 'mainController'
+        
+    })
+    
+    .when('/true_false',  {
+        templateUrl: 'pages/true_false.html',
+        controller: 'secondController'
+    })
+    
+    .when('/matching', {
+        templateUrl: 'pages/matching.html',
+        controller: 'mainController'
+    })
+          
 });
 
 
