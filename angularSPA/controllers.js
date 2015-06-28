@@ -1,45 +1,51 @@
-var myApp = angular.module('myApp',['ngRoute']);
-myApp.controller('mainController',['$scope','$http',function($scope,$http) {
-    console.log("from controller");
-    
-     
-        $http.get('/multipleChoice').success(function(response) {
-            console.log("got mutiplechoice data");
-            $scope.multipleChoice = response;
-            $scope.question = "";
-            
-        });
+var myApp = angular.module('myApp', ['ngRoute']);
+
+myApp.controller('mainController', ['$scope' ,'$http' ,'$route' ,function($scope,$http,$route) {
+   
+     $http.get('/multipleChoice').success(function(response) {
+          $scope.multipleChoice = response;
+          $scope.question = "";
+          $scope.$route = $route;
+     });   
 }]);
 
-myApp.controller('secondController',['$scope','$http',function($scope,$http) {
-            
-        $http.get('/match').success(function(response) {
-            console.log("got match data");
-            $scope.match = response;
-            $scope.choice = "";
-            
-
-        });
+myApp.controller('secondController',['$scope','$http','$route',function($scope,$http,$route) {
     
-            $scope.random = function(ansChoice) {
-                return Math.random();
+     $http.get('/match').success(function(response) {
+          $scope.match = response;
+          $scope.choice = "";
+          $scope.$route = $route;
+          $scope.random = function(ansChoice) {   
+               return Math.random();
             };
             
-    
-    
+        });
 }]);
 
-myApp.directive('questionGroup', function() {
-    return {
-        replace: true,
-        compile: function(telm, attrs) {
-                var name = telm.attrs;
-                //console.log(name);
-        }
-    }
-});
+myApp.controller('thirdController',['$scope','$http','$route',function($scope,$http,$route) {
 
-myApp.directive('navigationBar', function() {
+     $scope.$route = $route;
+     
+}]);
+
+myApp.controller('fourthController',['$scope','$http','$route',function($scope,$http,$route) {
+    
+         $http.get('/truefalse').success(function(response) {
+          $scope.tandf = response;
+          $scope.choice = "";
+          $scope.$route = $route; 
+
+          $scope.$route = $route;
+              
+         });
+         
+
+}]);
+
+
+
+
+/*myApp.directive('navigationBar', function() {
     return {
         template:   '<nav class="navbar navbar-default">'
                         +'<div class="container-fluid">'
@@ -48,8 +54,8 @@ myApp.directive('navigationBar', function() {
                             +'</div>'
                             +'<div>'
                                 +'<ul class="nav navbar-nav">'
-                                    +'<li class="active"><a href="#">Home</a></li>'
-                                    +'<li><a href="#/match">Matching</a></li>'
+                                    +'<li ng-class="{active: $route.current.activeTab == "Home"}"><a href="#">Home</a></li>'
+                                    +'<li ng-class="{active: $route.current.activeTab == "Match"}"><a href="#/match">Matching</a></li>'
                                     +'<li><a href="#/true_false">True and False</a></li>' 
                                     +'<li><a href="#/multiple_choice">Multiple Choice</a></li>' 
                                 +'</ul>'
@@ -58,6 +64,8 @@ myApp.directive('navigationBar', function() {
                     +'</nav>'
     }
 });
+*/
+
 
 myApp.config(function($routeProvider) {
     
@@ -65,21 +73,36 @@ myApp.config(function($routeProvider) {
     
     .when('/multiple_choice', {
         templateUrl: 'pages/multiplechoice.html',
-        controller: 'mainController'
+        controller: 'mainController',
+        activeTab: 'Multchoice'
         
     })
     
-    .when('/true_false',  {
-        templateUrl: 'pages/true_false.html',
-        controller: 'mainController'
+    .when('/truefalse',  {
+        templateUrl: 'pages/truefalse.html',
+        controller: 'fourthController',
+        activeTab: 'True/False'
     })
     
     .when('/match', {
         templateUrl: 'pages/match.html',
-        controller: 'secondController'
+        controller: 'secondController',
+        activeTab: 'Match'
     })
-          
+    
+    .when('/home', {
+        templateUrl: 'pages/home.html',
+        controller: 'thirdController',
+        activeTab: 'Home'
+    })
+    
+    .otherwise({
+        redirectTo:'/home'
+    })
+         
 });
+
+
 
 
 
