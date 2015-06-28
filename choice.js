@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('multipleChoice', ['multipleChoice','match']);
+var db = mongojs('multipleChoice', ['multipleChoice','match','truefalse']);
 
 var bodyParser = require('body-parser');
 
@@ -25,12 +25,15 @@ app.get('/match', function(req, res) {
     });
 });
 
-app.post('/multipleChoice',function(req,res) {
-    console.log(req.body);
-    db.multipleChoice.insert(req.body, function(err, doc) {
-        res.json(doc);
+app.get('/truefalse', function(req, res) {
+    //console.log(res);
+    db.truefalse.find(function(err, docs) {
+        console.log(docs);
+        res.json(docs);
     });
 });
+
+
 
 
 
