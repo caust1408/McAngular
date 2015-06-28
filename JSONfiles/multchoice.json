@@ -1,0 +1,10 @@
+[ 
+  {"text": "First state to legalize gay marriage", "answer": "Massachusetts", "decoys": ["Massachusetts", "Oregon", "New York", "Indiana"] },
+  {"text": "The last state to join the union", "answer": "Hawaii", "decoys": ["Alaska", "Arizona", "Hawaii","Ohio" ] },
+  {"text": "Harry Trumans home state", "answer": "Missouri", "decoys": ["Illinois", "Missouri", "Indiana", "Ohio" ] },
+  {"text": "Largest state by area", "answer": "Alaska", "decoys": ["Texas", "Montana", "Rhode Island","Alaska" ] },
+  {"text": "John Glenns home state", "answer": "Ohio", "decoys": ["Pennsylvania", "Ohio", "Florida","Illinois" ] },
+  {"text": "State where Detroit Pistons first played", "answer": "Indiana", "decoys": ["Indiana", "Minnesota", "Ohio", "Kentucky" ] },
+  {"text": "The first state to join the union", "answer": "Delaware", "decoys": ["Georgia", "Massachusetts", "Rhode Island","Delaware" ] }
+]
+
