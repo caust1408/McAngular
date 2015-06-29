@@ -17,9 +17,9 @@ myApp.controller('secondController',['$scope','$http','$route',function($scope,$
           $scope.$route = $route;
           $scope.random = function(ansChoice) {   
                return Math.random();
-            };
+          };
             
-        });
+     });
 }]);
 
 myApp.controller('thirdController',['$scope','$http','$route',function($scope,$http,$route) {
@@ -30,18 +30,19 @@ myApp.controller('thirdController',['$scope','$http','$route',function($scope,$h
 
 myApp.controller('fourthController',['$scope','$http','$route',function($scope,$http,$route) {
     
-         $http.get('/truefalse').success(function(response) {
+     $http.get('/truefalse').success(function(response) {
           $scope.tandf = response;
           $scope.choice = "";
           $scope.$route = $route; 
-
-          $scope.$route = $route;
+          
+               $scope.score = function() {
+          console.log(angular.element('div'));
+     };
               
-         });
-         
+     });  
+
 
 }]);
-
 
 
 
@@ -66,6 +67,29 @@ myApp.controller('fourthController',['$scope','$http','$route',function($scope,$
 });
 */
 
+myApp.directive("showThis", [
+      function() {
+        return {
+          link: function(scope, element, attrs) {
+            scope.$watch(attrs.showThis, function(newValue, oldValue) {
+              if (newValue) {
+                return element.fadeIn(7000);
+              } else {
+                return element.hide(7000).fadeIn(7000);
+              }
+            });
+          }
+        };
+      }
+    ]);
+
+myApp.directive('subCat', function() {
+     return {
+          template:      '<div class="row">'
+                              +'<button type="button" class="btn btn-success btn-block">Submit</button>'
+                         +'</div>'
+     }
+});
 
 myApp.config(function($routeProvider) {
     
